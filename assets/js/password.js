@@ -17,7 +17,6 @@ var NUMBERS = passwordCharacters(48,57)
 var SYMBOLS = passwordCharacters(33, 47).concat(passwordCharacters(58, 64)).concat(passwordCharacters(91,96))
 
 
-
 //To keep track of our characters from the OWASP 
 function passwordCharacters (low,high) {
   
@@ -33,6 +32,7 @@ function passwordCharacters (low,high) {
   return array
 }
 
+//Listens to when the wondow reloads and then operates generatepassword function
 window.addEventListener = ('load', function(){
   generatePassword();
 });
@@ -58,6 +58,7 @@ function generatePassword (){
   return passwordCriteria.join('')//fills the array with the stuff from the for loop and joins it into an empty string
   
 }
+
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
