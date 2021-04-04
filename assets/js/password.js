@@ -33,32 +33,43 @@ function passwordCharacters (low,high) {
   return array
 }
 
-window.onload = function(){
+window.addEventListener = ('load', function(){
   generatePassword();
-};
+});
 
-function generatePassword (number, specialSymbols, upperCase, lowerCase){
-  let characterCode = UPPER_CHARACTERS;
-  if (number) characterCode = LOWER_CHARACTERS;
-  if (specialSymbols) characterCode = SYMBOLS;
-  if (number) characterCode = NUMBERS;
+function generatePassword (){
+  
+  //allows for a merged password with all the elements through concat and reassigning the characterCode (let variable)
+  let characterCode = UPPER_CHARACTERS;//this already accounts for the uppercase values
+  if (lowerCase) characterCode = characterCode.concat(LOWER_CHARACTERS);
+  if (specialSymbols) characterCode = characterCode.concat(SYMBOLS);
+  if (number) characterCode = characterCode.concat(NUMBERS);
 
-  const passwordCriteria
+  //an array that'll contain the characters
+  const passwordCriteria = []
+  
+
+  //creates an array by going through math method an pushing into the variable password criteria
+  for (i =0; i < inputNumber; i++){
+    //chooses a number for characterCode to choose the value needed in each of the cases above
+    const character = characterCode[Math.floor(Math.random() * characterCode.length)];
+    passwordCriteria.push(String.fromCharCode(character));//pushing character as a string into the array passwordcriteria
+  }
+  return passwordCriteria.join('')//fills the array with the stuff from the for loop and joins it into an empty string
+  
 }
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
 
-
 // Write password to the #password input space
 function writePassword() {
-  console.log(UPPER_CHARACTERS);
-  
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+  
 
 }
 
